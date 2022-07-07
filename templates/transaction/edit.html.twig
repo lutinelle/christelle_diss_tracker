@@ -1,13 +1,49 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Transaction{% endblock %}
+{% block title %}Modifier Transaction{% endblock %}
 
 {% block body %}
-    <h1>Edit Transaction</h1>
+    <div class = "container">
+        <!-- header -->
+        <header class="row secondary-page">
+            <div class="col-1">
+                <a href="{{ path('app_transaction_index') }}"><i class="bi bi-x"></i></a>
 
-    {{ include('transaction/_form.html.twig', {'button_label': 'Update'}) }}
+            </div>
+            <h1 class="col-11">
+                Modifier une transaction
+            </h1>
 
-    <a href="{{ path('app_transaction_index') }}">back to list</a>
+        </header>
 
-    {{ include('transaction/_delete_form.html.twig') }}
+
+        <!-- add form  -->
+        {{ form_start(form) }}
+        <div class="row form-group">
+            <div class="col">
+
+                <div class="form-field input-group flex-nowrap">
+                    {{ form_widget(form.currency) }}
+                </div>
+                <div class="form-field input-group flex-nowrap">
+                    <span class="input-group-text" id="addon-wrapping"><i class="bi bi-coin"></i></span>
+                    {{ form_widget(form.qty) }}
+                </div>
+                <div class="form-field input-group flex-nowrap">
+                    <span class="input-group-text" id="addon-wrapping">€</span>
+                    {{ form_widget(form.price) }}
+                </div>
+
+            </div>
+            <div class="col-12 d-flex justify-content-center">
+                <button type="submit" class=" btn btn-secondary btn-outline-dark">Modifier</button>
+            </div>
+
+        </div>
+        {{ form_end(form) }}
+    </div>
+
+
+
+
 {% endblock %}

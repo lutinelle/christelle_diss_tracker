@@ -1,0 +1,85 @@
+/*define custom font*/
+@font-face {
+    font-family: 'Akzidenz-Grotesk BQ';
+    src: local('Akzidenz-Grotesk BQ Regular'), local('Akzidenz-Grotesk-BQ-Regular'),
+    url('fonts/AkzidenzGroteskBQ-Reg.woff2') format('woff2'),
+    url('fonts/AkzidenzGroteskBQ-Reg.woff') format('woff'),
+    url('fonts/AkzidenzGroteskBQ-Reg.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+/*import google font*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body, .form-style, .form-select, .input-group-text, #transaction_qty, #transaction_price, #transaction_currency{
+
+    background-color:#100f0f;
+    font-family: 'Roboto', sans-serif;
+    color: #efefef;
+}
+.logo{
+    font-family: 'Akzidenz-Grotesk BQ', sans-serif;
+    font-weight: bold;
+}
+.row{
+    justify-content: space-around;
+}
+header{
+    height: 50px;
+    align-items: center;
+    border-bottom: 1px solid gray ;
+}
+h1{
+    font-size: 20px;
+}
+
+.balance{
+    height: 75px;
+    align-items: center;
+    font-size: xx-large;
+    text-align: center;
+}
+
+.secondary-page{
+    justify-content: start;
+    text-align: center;
+}
+
+.form-group{
+    margin-top: 5rem;
+}
+
+.form-style, #transaction_currency{
+    width: 100%;
+
+    border:none;
+}
+
+.input-group-text {
+    border:none;
+}
+
+.form-field{
+    margin: 40px auto;
+    width: 80%;
+    border: 1px solid gray ;
+    border-radius: 0;
+    height: 36px;
+}
+
+button{
+    position:absolute;
+    bottom:10vh;
+    text-align: center;
+    width: 250px;
+}
+
+.graph{
+    margin: 5rem auto;
+    width: 80%;
+    height: 200px;
+    background-color: aqua;
+
+}
+
+
