@@ -23,7 +23,12 @@
         <!-- caluclate win/loss of the day -->
         <div class="row balance">
             <div class="col">
-                +2500€
+                <!--calcul des param progress bar-->
+
+                    {% if total >= 0 %}
+                        +
+                    {% endif %}
+                {{ total }}
             </div>
         </div>
         <!-- table of crypto bought  -->
@@ -33,7 +38,7 @@
                     <tbody>
                     {% for transaction in transactions %}
                         <tr>
-                            <td>logo SYM ({{ transaction.currency }})</td>
+                            <td>logo {{ transaction.currency.symbol }} ({{ transaction.currency }})</td>
                             <td><i class="bi bi-arrow-up-right"></i><i class="bi bi-arrow-up-right"></i></td>
                             <td>
                                 <a href="{{ path('app_transaction_edit', {'id': transaction.id}) }}"><i class="bi bi-pencil-fill"></i></a>
