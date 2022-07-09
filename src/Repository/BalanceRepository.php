@@ -44,7 +44,7 @@ class BalanceRepository extends ServiceEntityRepository
     $conn = $this->getEntityManager()->getConnection();
     $sql = 'SELECT  balance.date, balance.value
                 FROM balance
-                ORDER BY balance.date DESC';
+                ORDER BY balance.date ASC';
     $stmt = $conn->prepare($sql);
     $sqlResult = $stmt->executeQuery();
 
