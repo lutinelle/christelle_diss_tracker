@@ -13,26 +13,28 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/transaction')]
+
 class TransactionController extends AbstractController
 {
     #[Route('/', name: 'app_transaction_index', methods: ['GET'])]
     public function index(TransactionRepository $transactionRepository, CryptoCurrencyRepository $currencyRepository): Response
     {
         // get all currency capId from db as an array
+        $paramApiConvert = "EUR";
         $currencies = $currencyRepository->findAll();
         $capIDs=[];
         foreach ($currencies as $currency) {
             $capIDs[]=$currency->getCapId();
         }
         //next transform array in string for API entry
+        $paramApiId= implode(",", $capIDs);
 
         //get gurrency price
         $url = 'https://pro-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest';
 
         $parameters = [
-            'id' => "1,1321,52",
-            'convert' => 'EUR'
+            'id' => $paramApiId,
+            'convert' => $paramApiConvert
         ];
 
         $headers = [
@@ -58,8 +60,10 @@ class TransactionController extends AbstractController
         //build array of capId => current price from API
         $currentValue=[];
         foreach ($capIDs as $capId){
-            $currentValue[$capId]=$objResponse->data->$capId->quote->EUR->price;
+            $currentValue[$capId]=$objResponse->data->$capId->quote->$paramApiConvert->price;
+            $currentTendency24[$capId]=$objResponse->data->$capId->quote->$paramApiConvert->percent_change_24h;
         }
+
 
         curl_close($curl); // Close request
 
@@ -72,7 +76,7 @@ class TransactionController extends AbstractController
         }
 
         return $this->render('transaction/index.html.twig', [
-            'transactions' => $transactionRepository->findAll(), 'total'=>$total
+            'transactions' => $transactionRepository->findAll(), 'total'=>$total,'tendency' =>$currentTendency24,
         ]);
     }
 

@@ -23,7 +23,7 @@
         <!-- caluclate win/loss of the day -->
         <div class="row balance">
             <div class="col">
-                <!--calcul des param progress bar-->
+                <!--display total viw sign-->
 
                     {% if total >= 0 %}
                         +
@@ -37,10 +37,27 @@
                 <table class="table table-dark table-striped">
                     <tbody>
                     {% for transaction in transactions %}
-                        <tr>
-                            <td>logo {{ transaction.currency.symbol }} ({{ transaction.currency }})</td>
-                            <td><i class="bi bi-arrow-up-right"></i><i class="bi bi-arrow-up-right"></i></td>
-                            <td>
+                        <tr class="row">
+                            {% set path = transaction.currency %}
+
+                            <td class="col-1 text-center"><object data="{{ asset ('svg/'~transaction.currency~'-logo.svg') }}" height="25" > </object></td>
+                            <td class="col-7"> {{ transaction.currency.symbol }} ({{ transaction.currency }})</td>
+                            <!-- display tendency  -->
+                            {% if tendency[transaction.currency.capId] >= 0 %}
+                                <td class="col-2"><i class="bi bi-arrow-up-right"></i>
+                                    {% if tendency[transaction.currency.capId] >= 10 %}
+                                    <i class="bi bi-arrow-up-right"></i></td>
+                                    {% endif %}
+                            {% endif %}
+                            {% if tendency[transaction.currency.capId] < 0 %}
+                                <td class="col-2"><i class="bi bi-arrow-down-right"></i>
+                                {% if tendency[transaction.currency.capId] <= -10 %}
+                                    <i class="bi bi-arrow-down-right"></i></td>
+                                {% endif %}
+                            {% endif %}
+
+
+                            <td class="col-2">
                                 <a href="{{ path('app_transaction_edit', {'id': transaction.id}) }}"><i class="bi bi-pencil-fill"></i></a>
                                 <a href="{{ path('app_transaction_delete', {'id': transaction.id}) }}"><i class="bi bi-trash-fill"></i></a>
                             </td>
@@ -56,6 +73,5 @@
             </div>
         </div>
     </div>
-
 
 {% endblock %}
