@@ -39,6 +39,23 @@ class BalanceRepository extends ServiceEntityRepository
         }
     }
 
+    public function findHistorySortByDate(): array
+{
+    $conn = $this->getEntityManager()->getConnection();
+    $sql = 'SELECT  balance.date, balance.value
+                FROM balance
+                ORDER BY balance.date DESC';
+    $stmt = $conn->prepare($sql);
+    $sqlResult = $stmt->executeQuery();
+
+    // returns an array of arrays (i.e. a raw data set)
+    return $sqlResult->fetchAllAssociative();
+}
+    public function findAllSorted(): array
+    {
+        return $this->findBy(array(), array('date' => 'ASC'));
+    }
+
 //    /**
 //     * @return Balance[] Returns an array of Balance objects
 //     */
