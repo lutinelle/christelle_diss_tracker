@@ -13,7 +13,7 @@
                 <div class="row justify-content-end">
 
                     <div class="col-2">
-                        <a href="{{ path('app_transaction_new') }}"><i class="bi bi-plus-lg"></i></a>
+                        <a href="{{ path('app_transaction_new') }}" class="add"><i class="bi bi-plus-lg"></i></a>
 
                     </div>
                 </div>
@@ -28,7 +28,7 @@
                     {% if total >= 0 %}
                         +
                     {% endif %}
-                <a href="{{ path('app_balance') }}">{{ total }}</a>
+                <a href="{{ path('app_balance') }}" id="total">{{ total }}</a>
             </div>
         </div>
         <!-- table of crypto bought  -->
@@ -58,8 +58,8 @@
 
 
                             <td class="col-2">
-                                <a href="{{ path('app_transaction_edit', {'id': transaction.id}) }}"><i class="bi bi-pencil-fill"></i></a>
-                                <a href="{{ path('app_transaction_delete', {'id': transaction.id}) }}"><i class="bi bi-trash-fill"></i></a>
+                                <a href="{{ path('app_transaction_edit', {'id': transaction.id}) }}" class="edit"><i class="bi bi-pencil-fill"></i></a>
+                                <a href="{{ path('app_transaction_delete', {'id': transaction.id}) }}" class="del"><i class="bi bi-trash-fill"></i></a>
                             </td>
                         </tr>
                     {% else %}
