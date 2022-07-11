@@ -13,21 +13,23 @@ class CoinMarketConectorTest extends KernelTestCase
 {
     public function testCalculateBalance(): void
     {
-        // (1) boot the Symfony kernel
+        //  boot the Symfony kernel
         self::bootKernel();
 
-        // (2) use static::getContainer() to access the service container
+        //  use static::getContainer() to access the service container
         $container = static::getContainer();
 
-        // (3) run some service & test the result
+        //  run some service
         $CoinMarketConector = $container->get(CoinMarketConector::class);
 
+        // create test currency entity
         $currencyBitcoin= new CryptoCurrency();
         $currencyBitcoin->setCapId(1);
         $currencyBitcoin->setName("BitCoin");
         $currencyBitcoin->setSlug("bitcoin");
         $currencyBitcoin->setSymbol("BTC");
 
+        // create test transaction entity
         $transaction1 = new Transaction();
         $transaction1->setPrice(50);
         $transaction1->setQty(3);
@@ -38,15 +40,17 @@ class CoinMarketConectorTest extends KernelTestCase
         $transaction2->setQty(5);
         $transaction2->setCurrency($currencyBitcoin);
 
+        // create morck for transactionRepository
+
         $transactionRepository = $this->createMock(TransactionRepository::class);
         $transactionRepository->expects($this->once())
             ->method('findAll')
             ->willReturn([$transaction1,$transaction2]);
 
-
+        // test data for current value of currency (only for currency used)
         $currentValue=[1=>150];
 
-        //appel fct
+        //call fct to test
         $total=$CoinMarketConector->calculateBalance($transactionRepository, $currentValue);
 
 
