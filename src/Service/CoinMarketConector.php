@@ -55,9 +55,14 @@ class CoinMarketConector
             $currentTendency24[$capId]=$objResponse->data->$capId->quote->$paramApiConvert->percent_change_24h;
         }
 
-
         curl_close($curl); // Close request
 
+        $total = $this->calculateBalance($transactionRepository, $currentValue);
+
+        return ['total'=>$total,'currentTendency24'=>$currentTendency24];
+    }
+    public function calculateBalance( TransactionRepository $transactionRepository, array $currentValue ): float
+    {
         $transactions = $transactionRepository->findAll();
         $total =0;
 
@@ -65,7 +70,7 @@ class CoinMarketConector
         foreach ($transactions as $transaction){
             $total += ($currentValue[$transaction->getCurrency()->getCapId()]-$transaction->getPrice())*$transaction->getQty();
         }
-
-        return ['total'=>$total,'currentTendency24'=>$currentTendency24];
+        return $total;
     }
+
 }
