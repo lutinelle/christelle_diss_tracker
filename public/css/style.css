@@ -11,7 +11,7 @@
 /*import google font*/
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-body, .form-style, .form-select, .input-group-text, #transaction_qty, #transaction_price, #transaction_currency{
+body, a, .form-style, .form-select, .input-group-text, #transaction_qty, #transaction_price, #transaction_currency{
 
     background-color:#100f0f;
     font-family: 'Roboto', sans-serif;
@@ -34,7 +34,7 @@ h1{
 }
 
 .balance{
-    height: 75px;
+    height: 80px;
     align-items: center;
     font-size: xx-large;
     text-align: center;
@@ -78,4 +78,14 @@ button{
     margin: 5rem auto;
 }
 
+a{
+text-decoration: none;
+}
+
+a:hover{
+    color:#1fc36c;
+}
+.table-dark{
+    --bs-table-bg:#100f0f;
+}
 

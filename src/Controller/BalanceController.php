@@ -38,8 +38,8 @@ class BalanceController extends AbstractController
             'datasets' => [
                 [
                     'label' => 'gain',
-                    'backgroundColor' => 'rgb(255, 99, 132)',
-                    'borderColor' => 'rgb(255, 99, 132)',
+                    'backgroundColor' => 'rgb(31, 196, 108)',
+                    'borderColor' => 'rgb(31, 196, 108)',
                     'data' => $valueHistory,
                 ],
             ],
@@ -70,6 +70,7 @@ class BalanceController extends AbstractController
     }
 
     #[Route('/new', name: 'app_balance_new', methods: ['GET', 'POST'])]
+
     public function newEntry(EntityManagerInterface $em, CryptoCurrencyRepository $currencyRepository, TransactionRepository $transactionRepository, CoinMarketConector $coinMarketConector): Response
     {
         $arrayCoinMarket=$coinMarketConector->getInstantBalance($currencyRepository, $transactionRepository);
