@@ -10,9 +10,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+// for the admin only
 #[Route('/cryptocurrency')]
 class CryptoCurrencyController extends AbstractController
 {
+
     #[Route('/', name: 'app_crypto_currency_index', methods: ['GET'])]
     public function index(CryptoCurrencyRepository $cryptoCurrencyRepository): Response
     {
@@ -34,13 +36,17 @@ class CryptoCurrencyController extends AbstractController
             return $this->redirectToRoute('app_crypto_currency_index', [], Response::HTTP_SEE_OTHER);
         }
 
+        // if add currency, remind to add svg file for icone in public/svg
+        //and name it same as name!!
         return $this->renderForm('crypto_currency/new.html.twig', [
             'crypto_currency' => $cryptoCurrency,
             'form' => $form,
         ]);
     }
 
+
     #[Route('/{id}', name: 'app_crypto_currency_show', methods: ['GET'])]
+
     public function show(CryptoCurrency $cryptoCurrency): Response
     {
         return $this->render('crypto_currency/show.html.twig', [

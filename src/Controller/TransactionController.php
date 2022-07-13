@@ -50,7 +50,7 @@ class TransactionController extends AbstractController
         ]);
     }
 
-
+    //not used in website
     #[Route('/{id}', name: 'app_transaction_show', methods: ['GET'])]
     public function show(Transaction $transaction): Response
     {
@@ -62,15 +62,17 @@ class TransactionController extends AbstractController
     #[Route('/{id}/edit', name: 'app_transaction_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Transaction $transaction, TransactionRepository $transactionRepository): Response
     {
+        //create
         $form = $this->createForm(TransactionType::class, $transaction);
         $form->handleRequest($request);
 
+        // submit
         if ($form->isSubmitted() && $form->isValid()) {
             $transactionRepository->add($transaction, true);
 
             return $this->redirectToRoute('app_transaction_index', [], Response::HTTP_SEE_OTHER);
         }
-
+        //render
         return $this->renderForm('transaction/edit.html.twig', [
             'transaction' => $transaction,
             'form' => $form,
