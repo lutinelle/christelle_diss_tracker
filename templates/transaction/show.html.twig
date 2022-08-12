@@ -30,11 +30,15 @@
                     <span class="input-group-text no-edit" id="addon-wrapping">€</span>
                     <span class="input-group-text show-info no-edit">{{ transaction.price }}</span>
                 </div>
+                <div  class="input-group-text show-info no-edit">
+                    <i class="bi bi-arrow-right"></i> INVESTISSEMENT {{ transaction.price * transaction.qty }} €
+                </div>
 
             </div>
             <div class="col-12 d-flex justify-content-center">
-                <a href="{{ path('app_transaction_edit', {'id': transaction.id}) }}" class=" btn btn-secondary btn-outline-dark">Modifier transaction</a>
+                <a href="{{ path('app_transaction_edit', {'id': transaction.id}) }}" class=" btn btn-secondary btn-outline-dark button">Modifier transaction</a>
             </div>
+
 
         </div>
 

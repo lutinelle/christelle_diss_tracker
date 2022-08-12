@@ -72,7 +72,7 @@ h1{
     height: 36px;
 }
 
-button{
+button, .button{
     position:absolute;
     bottom:10vh;
     text-align: center;
