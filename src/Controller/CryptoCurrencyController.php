@@ -36,8 +36,8 @@ class CryptoCurrencyController extends AbstractController
             return $this->redirectToRoute('app_crypto_currency_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        // if add currency, remind to add svg file for icone in public/svg
-        //and name it same as name!!
+        // if add currency, remind to add svg file for icon in public/svg
+        //and name it same as slug-logo!!
         return $this->renderForm('crypto_currency/new.html.twig', [
             'crypto_currency' => $cryptoCurrency,
             'form' => $form,

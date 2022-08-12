@@ -2,9 +2,9 @@
 @font-face {
     font-family: 'Akzidenz-Grotesk BQ';
     src: local('Akzidenz-Grotesk BQ Regular'), local('Akzidenz-Grotesk-BQ-Regular'),
-    url('fonts/AkzidenzGroteskBQ-Reg.woff2') format('woff2'),
-    url('fonts/AkzidenzGroteskBQ-Reg.woff') format('woff'),
-    url('fonts/AkzidenzGroteskBQ-Reg.ttf') format('truetype');
+    url('font/AkzidenzGroteskBQ-Reg.woff2') format('woff2'),
+    url('font/AkzidenzGroteskBQ-Reg.woff') format('woff'),
+    url('font/AkzidenzGroteskBQ-Reg.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
 }
@@ -51,12 +51,17 @@ h1{
 
 .form-style, #transaction_currency{
     width: 100%;
-
     border:none;
 }
 
 .input-group-text {
     border:none;
+}
+.show-info{
+    padding: 0;
+}
+.no-edit{
+    color: gray;
 }
 
 .form-field{

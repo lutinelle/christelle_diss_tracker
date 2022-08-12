@@ -1,34 +1,52 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Transaction{% endblock %}
+{% block title %}Modifier Transaction{% endblock %}
 
 {% block body %}
-    <h1>Transaction</h1>
+    <div class = "container">
+        <!-- header -->
+        <header class="row secondary-page">
+            <div class="col-1">
+                <a href="{{ path('app_transaction_index') }}" class="close"><i class="bi bi-x"></i></a>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ transaction.id }}</td>
-            </tr>
-            <tr>
-                <th>Qty</th>
-                <td>{{ transaction.qty }}</td>
-            </tr>
-            <tr>
-                <th>Price</th>
-                <td>{{ transaction.price }}</td>
-            </tr>
-            <tr>
-                <th>Comment</th>
-                <td>{{ transaction.comment }}</td>
-            </tr>
-        </tbody>
-    </table>
+            </div>
+            <h1 class="col-11">
+                Information de la transaction
+            </h1>
+        </header>
 
-    <a href="{{ path('app_transaction_index') }}">back to list</a>
 
-    <a href="{{ path('app_transaction_edit', {'id': transaction.id}) }}">edit</a>
+        <div class="row form-group">
+            <div class="col">
 
-    {{ include('transaction/_delete_form.html.twig') }}
+                <div class="form-field input-group flex-nowrap ">
+                    <span class="input-group-text no-edit">{{ transaction.currency }}</span>
+                </div>
+                <div class="form-field input-group flex-nowrap">
+                    <span class="input-group-text no-edit" id="addon-wrapping"><i class="bi bi-coin"></i></span>
+                    <span class="input-group-text show-info no-edit">{{ transaction.qty }}</span>
+                </div>
+                <div class="form-field input-group flex-nowrap">
+                    <span class="input-group-text no-edit" id="addon-wrapping">€</span>
+                    <span class="input-group-text show-info no-edit">{{ transaction.price }}</span>
+                </div>
+
+            </div>
+            <div class="col-12 d-flex justify-content-center">
+                <a href="{{ path('app_transaction_edit', {'id': transaction.id}) }}" class=" btn btn-secondary btn-outline-dark">Modifier transaction</a>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
 {% endblock %}
